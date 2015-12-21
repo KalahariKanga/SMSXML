@@ -1,8 +1,5 @@
 #include "XMLParser.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
+
 
 XMLParser::XMLParser()
 {
@@ -27,7 +24,43 @@ void XMLParser::parseMessages()
 	auto sms = doc.first_node()->first_node();
 	while (sms->next_sibling() != NULL)
 	{
-		std::cout << sms->first_attribute("body")->value();
+		auto attr = sms->first_attribute();
+
+		std::string attr_name;
+
+		long timecode;
+		bool from;
+		std::string body;
+		std::string contact;
+
+		while (attr->next_attribute() != NULL)
+		{
+			
+			
+			attr_name = attr->name();
+
+			if (attr_name == "date")
+			{
+				std::string timecodeString = attr->value();
+				timecodeString.erase(timecodeString.end() - 4, timecodeString.end());
+				long timecode = stol(timecodeString);
+			}
+			if (attr_name == "body")
+			{
+				body = attr->value();
+			}
+			if (attr_name == "type")
+			{
+				std::string type = attr->value();
+				from = stoi(type) - 1;
+			}
+			if (attr_name == "contact_name")
+			{
+				contact = attr->value();
+			}
+			attr = attr->next_attribute();
+		}
+		messages.emplace_back(body, contact, from, timecode);
 		sms = sms->next_sibling();
 	}
 }

@@ -1,11 +1,17 @@
 #pragma once
 #include "rapidxml.hpp"
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <sstream>
+#include <vector>
+#include "Message.h"
 
 class XMLParser
 {
 	rapidxml::xml_document<> doc;
 	std::string parseString;
+	std::vector<Message> messages;
 public:
 	XMLParser();
 	~XMLParser();

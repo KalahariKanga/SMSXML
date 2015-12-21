@@ -6,9 +6,10 @@ class Message
 	std::string body;
 	std::string contactName;
 	bool from;
-	int timecode;
+	long timecode;
 public:
 	Message();
+	Message(std::string body, std::string contact, bool from, int timecode);
 	~Message();
 };
 
