@@ -35,8 +35,6 @@ void XMLParser::parseMessages()
 
 		while (attr->next_attribute() != NULL)
 		{
-			
-			
 			attr_name = attr->name();
 
 			if (attr_name == "date")
@@ -63,4 +61,9 @@ void XMLParser::parseMessages()
 		messages.emplace_back(body, contact, from, timecode);
 		sms = sms->next_sibling();
 	}
+}
+
+void XMLParser::runAnalysis(Analyser* analyser)
+{
+	analyser->analyse(messages);
 }

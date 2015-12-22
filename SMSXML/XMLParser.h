@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include "Message.h"
+#include "Analyser.h"
 
 class XMLParser
 {
@@ -18,5 +19,6 @@ public:
 
 	void loadFile(std::string filename);
 	void parseMessages();
+	void runAnalysis(Analyser* analyser);
 };
 
