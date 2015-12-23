@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include "MessageLengthAnalyser.h"
+#include "LexicalAnalyser.h"
 
 int main(int argc, char* argv[])
 {
@@ -12,10 +13,10 @@ int main(int argc, char* argv[])
 	std::cin >> fname;
 	
 	XMLParser parser;
-	MessageLengthAnalyser mla;
+	LexicalAnalyser la;
 	parser.loadFile(fname);
 	parser.parseMessages();
-	parser.runAnalysis(&mla);
+	parser.runAnalysis(&la);
 	system("pause");
 	return 0;
 }

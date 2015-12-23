@@ -21,8 +21,10 @@ void MessageLengthAnalyser::analyse(std::vector<Message> messages)
 		else
 			lengthDensity[length] = 0;
 	}
+	std::ofstream file("output");
 	for (auto& l : lengthDensity)
 	{
 		std::cout << l.first << ": " << l.second << "\n";
+		file << l.first << " " << l.second << "\n";
 	}
 }
