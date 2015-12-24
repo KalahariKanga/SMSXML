@@ -1,5 +1,7 @@
 #pragma once
 #include "Analyser.h"
+
+
 class LexicalAnalyser :
 	public Analyser
 {

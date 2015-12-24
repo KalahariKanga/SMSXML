@@ -25,9 +25,7 @@ std::string LexicalAnalyser::normalise(std::string body)
 	}
 
 	std::transform(body.begin(), body.end(), body.begin(), tolower);
-	//std::string alnum;
 	std::copy_if(body.begin(), body.end(), body.begin(), [](unsigned char c){return !ispunct(c); });
-	//return alnum;
 	return body;
 }
 
@@ -47,8 +45,14 @@ void LexicalAnalyser::analyse(std::vector<Message> messages)
 				wordMap[word] = 1;
 		}
 	}
+	std::multimap<int, std::string> flippedMap;
 	for (auto& w : wordMap)
+	{
+		flippedMap.insert(std::make_pair(w.second, w.first));
+	}
+	for (auto& w : flippedMap)
 	{
 		std::cout << w.first << ": " << w.second << std::endl;
 	}
+
 }
