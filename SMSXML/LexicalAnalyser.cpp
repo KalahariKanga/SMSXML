@@ -34,6 +34,9 @@ void LexicalAnalyser::analyse(std::vector<Message> messages)
 	std::map<std::string, int> wordMap;
 	for (auto& m : messages)
 	{
+		if (!checkMessage(m))
+			continue;
+
 		std::stringstream stream;
 		std::string word;
 		stream << normalise(m.getBody());

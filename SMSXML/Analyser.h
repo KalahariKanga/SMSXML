@@ -1,5 +1,6 @@
 #pragma once
 #include "Message.h"
+#include "Filter.h"
 #include <vector>
 #include <map>
 #include <iostream>
@@ -9,10 +10,13 @@
 
 class Analyser
 {
+protected:
+	std::vector<Filter> filters;
 public:
 	Analyser();
 	~Analyser();
 	virtual void analyse(std::vector<Message> messages) = 0;
-	//add filters
+	void addFilter(Filter f);
+	bool checkMessage(Message m);
 };
 

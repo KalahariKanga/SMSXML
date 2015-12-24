@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
 	
 	XMLParser parser;
 	LexicalAnalyser la;
+	Filter f([](Message m){return(m.getFrom()); });
+	la.addFilter(f);
 	parser.loadFile(fname);
 	parser.parseMessages();
 	parser.runAnalysis(&la);
