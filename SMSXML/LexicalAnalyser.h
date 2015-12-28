@@ -10,5 +10,6 @@ public:
 	LexicalAnalyser();
 	~LexicalAnalyser();
 	virtual void analyse(std::vector<Message> messages);
+	
 };
 

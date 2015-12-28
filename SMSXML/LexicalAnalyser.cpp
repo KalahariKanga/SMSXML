@@ -1,5 +1,5 @@
 #include "LexicalAnalyser.h"
-
+#include <iterator>
 
 LexicalAnalyser::LexicalAnalyser()
 {
@@ -24,9 +24,11 @@ std::string LexicalAnalyser::normalise(std::string body)
 		start_pos += 1;
 	}
 
+	std::string noPunct;
+	noPunct.reserve(body.length());
 	std::transform(body.begin(), body.end(), body.begin(), tolower);
-	std::copy_if(body.begin(), body.end(), body.begin(), [](unsigned char c){return !ispunct(c); });
-	return body;
+	std::copy_if(body.begin(), body.end(), std::back_inserter(noPunct), [](unsigned char c){return !ispunct(c); });
+	return noPunct;
 }
 
 void LexicalAnalyser::analyse(std::vector<Message> messages)
