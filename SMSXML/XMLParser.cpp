@@ -33,7 +33,7 @@ void XMLParser::parseMessages()
 		std::string body;
 		std::string contact;
 
-		while (attr->next_attribute() != NULL)
+		while (1)
 		{
 			attr_name = attr->name();
 
@@ -56,7 +56,10 @@ void XMLParser::parseMessages()
 			{
 				contact = attr->value();
 			}
-			attr = attr->next_attribute();
+			if (attr->next_attribute() != NULL)
+				attr = attr->next_attribute();
+			else
+				break;
 		}
 		messages.emplace_back(body, contact, from, timecode);
 		sms = sms->next_sibling();
